@@ -11,5 +11,3 @@ def answer(txt):
 while(True):
   userInput = input("Input: ")
   print(answer(userInput))
-
-#i added github
