@@ -1,10 +1,24 @@
-from austin import austinFunction
+import austin
+from baseChat import chatClasses
 
 def answer(txt):
-  answer = austinFunction(txt)
+  punctuation = [",", ".", "?", "!", "`", ";", ":", "(", ")", "-", "_", "'"]
+  for punc in punctuation:
+    txtPunc = txt.replace(punc, "")
+  txtLower = txtPunc.lower()
+  
+  if txtLower == "help":
+    helpList = []
+    for chatFunction in chatClasses:
+      helpList.extend(chatFunction.help())
+    
+    return "I can respond to:/n  •" + "/n. •".join(helpList)
 
-  if answer:
-    return answer
+  for chatFunctions in chatClasses:
+    response = chatFunctions(txt)
+    
+    if response:
+      return response
 
   return "CoreBot cannot respond"
 
