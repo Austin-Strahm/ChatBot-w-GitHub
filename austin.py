@@ -1,11 +1,10 @@
-from baseChat import ChatClassBase,chatClassAdd
+from baseChat import BaseClass,chatClassAdd
 
 
-class AustinChat(ChatClassBase):
-  def austinFunction(self, txt):
+class AustinChat(BaseClass):
+  def chat(self, txt):
 
     import re
-    greetings = ["hello", "good morning", "hi", "hola", "como estas", "buenos dias", "good afternoon", "good evening", "buenas tardes", "buenas noches"]
     responses1 = ["time", "times", "clock", "today"]
     responses2 = ["im"]
     responses22 = ["i", "we", "am", "are"]
@@ -38,9 +37,9 @@ class AustinChat(ChatClassBase):
       elif favoriteFiltered in favoritesPlural:
         print("My favorite {} are {}".format(favoriteFiltered, favoritesPlural[favoriteFiltered]))
 
-    teachersUnfiltered = re.search("(.*)((where)|(who)|(what))((s)|([\s]+is)|([\s]+are)|([\s]+will)|([\s]+does))[\s]*((dr)|(mr)|(ms)|(mrs)|)((\s)|(\W*))+(\w+)+(.*)", txtLower)
+    teachersUnfiltered = re.search("(.*)((dr)|(mr)|(ms)|(mrs))((\s)|(\W*))+(\w+)+(.*)", txtLower)
     if teachersUnfiltered:
-      teachersFiltered = teachersUnfiltered.group(20)
+      teachersFiltered = teachersUnfiltered.group(10)
 
       if teachersFiltered in teachers:
         return (teachers[teachersFiltered])
@@ -48,6 +47,10 @@ class AustinChat(ChatClassBase):
     for word in txtWords:
       if word.lower() in responses1:
         return ("The current time is {}".format(currentTime))
+
+    for word1 in txtWords:
+      if word1 in teachers:
+        return (teachers[word1])
 
     for word in txtWords:
 
@@ -65,11 +68,10 @@ class AustinChat(ChatClassBase):
       else:
         iamValue = 0
 
-    for word1 in txtWords:
-      if word.lower() in greetings:
-        return ("Hello [student]")
-      
     return None
+  
+  def help(self):
+    return ["time", "(any teacher name)", "i'm (any word)"]
 
 chatFunction = AustinChat()
 chatClassAdd(chatFunction)

@@ -12,13 +12,13 @@ def answer(txt):
     for chatFunction in chatClasses:
       helpList.extend(chatFunction.help())
     
-    return "I can respond to:/n  •" + "/n. •".join(helpList)
+    return "I can respond to:\n  •" + "\n •".join(helpList)
 
-  for chatFunctions in chatClasses:
-    response = chatFunctions(txt)
+  for function in chatClasses:
+    response = function.chat(txt)
     
     if response:
-      return response
+      return "    >{}".format(response)
 
   return "CoreBot cannot respond"
 
