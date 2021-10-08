@@ -1,10 +1,10 @@
-chatClasses = []
+CHAT_OBJECTS = []
 
-def chatClassAdd(chatFunction):
-  chatClasses.append(chatFunction)
+def addChatObject(chatObject):
+  CHAT_OBJECTS.append(chatObject)
 
-class BaseClass:
-  def chat(self, txt):
+class BaseChat:
+  def chat(self, text):
     return None
 
   def help(self):

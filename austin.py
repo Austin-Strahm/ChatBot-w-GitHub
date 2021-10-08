@@ -1,7 +1,7 @@
-from baseChat import BaseClass,chatClassAdd
+from baseChat import BaseChat,addChatObject
 
 
-class AustinChat(BaseClass):
+class AustinChat(BaseChat):
   def chat(self, txt):
 
     import re
@@ -71,7 +71,7 @@ class AustinChat(BaseClass):
     return None
   
   def help(self):
-    return ["time", "(any teacher name)", "i'm (any word)"]
+    return ["time", "(teacher name or question)", "i'm (any word)"]
 
-chatFunction = AustinChat()
-chatClassAdd(chatFunction)
+chatObject = AustinChat()
+addChatObject(chatObject)

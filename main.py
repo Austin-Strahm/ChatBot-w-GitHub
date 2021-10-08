@@ -1,5 +1,5 @@
 import austin
-from baseChat import chatClasses
+from baseChat import CHAT_OBJECTS
 
 def answer(txt):
   punctuation = [",", ".", "?", "!", "`", ";", ":", "(", ")", "-", "_", "'"]
@@ -8,19 +8,19 @@ def answer(txt):
   txtLower = txtPunc.lower()
   
   if txtLower == "help":
-    helpList = []
-    for chatFunction in chatClasses:
-      helpList.extend(chatFunction.help())
+    helpStrings = []
+    for chatFunction in CHAT_OBJECTS:
+      helpStrings.extend(chatFunction.help())
     
-    return "I can respond to:\n  •" + "\n •".join(helpList)
+    return "  >I can respond to:\n    •" + "\n    •".join(helpStrings)
 
-  for function in chatClasses:
+  for function in CHAT_OBJECTS:
     response = function.chat(txt)
     
     if response:
       return "    >{}".format(response)
 
-  return "CoreBot cannot respond"
+  return "    >CoreBot cannot respond"
 
 while(True):
   userInput = input("Input: ")
